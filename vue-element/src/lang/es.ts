@@ -1,0 +1,111 @@
+export default {
+  route: {
+    dashboard: 'Panel de control',
+    icons: 'Iconos',
+    components: 'Componentes',
+    tinymce: 'Tinymce',
+    markdown: 'Markdown',
+    avatarUpload: 'Subir avatar',
+    dropzone: 'Subir ficheros',
+    backToTop: 'Ir arriba',
+    example: 'Ejemplo',
+    nested: 'Rutas anidadass',
+    menu1: 'Menu 1',
+    'menu1-1': 'Menu 1-1',
+    'menu1-2': 'Menu 1-2',
+    'menu1-2-1': 'Menu 1-2-1',
+    'menu1-2-2': 'Menu 1-2-2',
+    'menu1-3': 'Menu 1-3',
+    menu2: 'Menu 2',
+    table: 'Tabla',
+    dynamicTable: 'Tabla dinámica',
+    draggableTable: 'Arrastrar tabla',
+    inlineEditTable: 'Editor',
+    complexTable: 'Complex Table',
+    tab: 'Pestaña',
+    form: 'Formulario',
+    createArticle: 'Crear artículo',
+    editArticle: 'Editar artículo',
+    articleList: 'Listado de artículos',
+    errorPages: 'Páginas de error',
+    page401: '401',
+    page404: '404',
+    theme: 'Tema',
+    i18n: 'I18n',
+    externalLink: 'Enlace externo',
+    profile: 'Profile'
+  },
+  navbar: {
+    logOut: 'Salir',
+    dashboard: 'Panel de control',
+    github: 'Github',
+    theme: 'Tema',
+    size: 'Tamaño global',
+    profile: 'Profile'
+  },
+  login: {
+    title: 'Formulario de acceso',
+    logIn: 'Acceso',
+    username: 'Usuario',
+    password: 'Contraseña',
+    any: 'nada',
+    thirdparty: 'Conectar con',
+    thirdpartyTips: 'No se puede simular en local, así que combine su propia simulación de negocios. ! !'
+  },
+  components: {
+    documentation: 'Documentación',
+    tinymceTips: 'Rich text editor is a core part of management system, but at the same time is a place with lots of problems. In the process of selecting rich texts, I also walked a lot of detours. The common rich text editors in the market are basically used, and the finally chose Tinymce. See documentation for more detailed rich text editor comparisons and introductions.',
+    stickyTips: 'when the page is scrolled to the preset position will be sticky on the top.',
+    backToTopTips1: 'When the page is scrolled to the specified position, the Back to Top button appears in the lower right corner',
+    backToTopTips2: 'You can customize the style of the button, show / hide, height of appearance, height of the return. If you need a text prompt, you can use element-ui el-tooltip elements externally',
+    imageUploadTips: 'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.'
+  },
+  table: {
+    dynamicTips1: 'Fixed header, sorted by header order',
+    dynamicTips2: 'Not fixed header, sorted by click order',
+    dragTips1: 'Orden por defecto',
+    dragTips2: 'The after dragging order',
+    title: 'Título',
+    importance: 'Importancia',
+    type: 'Tipo',
+    remark: 'Remark',
+    search: 'Buscar',
+    add: 'Añadir',
+    export: 'Exportar',
+    reviewer: 'Reviewer',
+    id: 'ID',
+    date: 'Fecha',
+    author: 'Autor',
+    readings: 'Lector',
+    status: 'Estado',
+    actions: 'Acciones',
+    edit: 'Editar',
+    publish: 'Publicar',
+    draft: 'Draft',
+    delete: 'Eliminar',
+    cancel: 'Cancelar',
+    confirm: 'Confirmar'
+  },
+  example: {
+    warning: 'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
+  },
+  theme: {
+    change: 'Cambiar tema',
+    documentation: 'Documentación del tema',
+    tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
+  },
+  tagsView: {
+    refresh: 'Actualizar',
+    close: 'Cerrar',
+    closeOthers: 'Cerrar otros',
+    closeAll: 'Cerrar todos'
+  },
+  settings: {
+    title: 'Page style setting',
+    theme: 'Theme Color',
+    showTagsView: 'Show Tags-View',
+    showSidebarLogo: 'Show Sidebar Logo',
+    fixedHeader: 'Fixed Header',
+    sidebarTextTheme: 'Sidebar Text Theme'
+  }
+}
