@@ -3,27 +3,27 @@ import request from '@/utils/request'
 export const getUsers = (params: any) =>
   request({
     url: '/users',
-    method: 'get',
+    method: 'GET',
     params
   })
 
-export const getUserInfo = (data: any) =>
+export const getUserInfo = (params?: any) =>
   request({
-    url: '/users/info',
-    method: 'post',
-    data
+    url: '/api/services/app/Session/GetCurrentLoginInformations',
+    method: 'GET',
+    params
   })
 
 export const getUserByName = (username: string) =>
   request({
     url: `/users/${username}`,
-    method: 'get'
+    method: 'GET'
   })
 
 export const updateUser = (username: string, data: any) =>
   request({
     url: `/users/${username}`,
-    method: 'put',
+    method: 'PUT',
     data
   })
 
@@ -40,11 +40,11 @@ export const login = (data: any) =>
     data
   })
 
-export const logout = () =>
-  request({
-    url: '/users/logout',
-    method: 'post'
-  })
+// export const logout = () =>
+//   request({
+//     url: '/users/logout',
+//     method: 'post'
+//   })
 
 export const register = (data: any) =>
   request({

@@ -31,7 +31,7 @@ import { RouteRecord, Route } from 'vue-router'
 })
 export default class extends Vue {
   private breadcrumbs: RouteRecord[] = []
-
+  
   @Watch('$route')
   private onRouteChange(route: Route) {
     // if you go to the redirect page, do not update the breadcrumbs
@@ -75,6 +75,10 @@ export default class extends Vue {
     const { redirect, path } = item
     if (redirect) {
       this.$router.push(redirect)
+      return
+    }
+    if (path) {
+      this.$router.push(path)
       return
     }
     this.$router.push(this.pathCompile(path))
