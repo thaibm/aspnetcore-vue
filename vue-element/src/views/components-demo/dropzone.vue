@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import Dropzone from '@/components/Dropzone/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import Dropzone from '@/components/Dropzone/index.vue';
 
 @Component({
   name: 'DropzoneDemo',
@@ -30,11 +30,11 @@ import Dropzone from '@/components/Dropzone/index.vue'
 })
 export default class extends Vue {
   private dropzoneSuccess(file: File, response: any) {
-    this.$message({ message: 'Upload success', type: 'success' })
+    this.$message({ message: 'Upload success', type: 'success' });
   }
 
   private dropzoneRemovedFile(file: File, error: Error, xhr: XMLHttpRequest) {
-    this.$message({ message: 'Delete success', type: 'success' })
+    this.$message({ message: 'Delete success', type: 'success' });
   }
 }
 </script>

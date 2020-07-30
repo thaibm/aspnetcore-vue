@@ -125,7 +125,7 @@
 
 <script lang="ts">
 // Source: https://github.com/wemake-services/vue-material-input/blob/master/src/components/MaterialInput.vue
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
   name: 'MaterialInput'
@@ -153,7 +153,7 @@ export default class extends Vue {
 
   @Watch('value')
   private onValueChange(value: any) {
-    this.valueCopy = value
+    this.valueCopy = value;
   }
 
   get computedClasses() {
@@ -161,37 +161,37 @@ export default class extends Vue {
       'material--active': this.focus,
       'material--disabled': this.disabled,
       'material--raised': Boolean(this.focus || this.valueCopy)
-    }
+    };
   }
 
   get filledPlaceholder() {
     if (this.focus) {
-      return this.placeholder
+      return this.placeholder;
     }
-    return ''
+    return '';
   }
 
   private handleInput(event: KeyboardEvent) {
-    const value = (event.target as HTMLInputElement).value
-    this.$emit('input', value)
+    const value = (event.target as HTMLInputElement).value;
+    this.$emit('input', value);
     if (this.$parent.$options.name === 'ElFormItem') {
       if (this.validateEvent) {
-        this.$parent.$emit('el.form.change', [value])
+        this.$parent.$emit('el.form.change', [value]);
       }
     }
   }
 
   private handleFocus(event: FocusEvent) {
-    this.focus = true
-    this.$emit('focus', event)
+    this.focus = true;
+    this.$emit('focus', event);
   }
 
   private handleBlur(event: FocusEvent) {
-    this.focus = false
-    this.$emit('blur', event)
+    this.focus = false;
+    this.$emit('blur', event);
     if (this.$parent.$options.name === 'ElFormItem') {
       if (this.validateEvent) {
-        this.$parent.$emit('el.form.blur', [this.valueCopy])
+        this.$parent.$emit('el.form.blur', [this.valueCopy]);
       }
     }
   }

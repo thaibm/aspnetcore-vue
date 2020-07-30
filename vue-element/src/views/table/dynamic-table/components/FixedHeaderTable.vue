@@ -41,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
-const defaultFormThead = ['apple', 'banana']
+const defaultFormThead = ['apple', 'banana'];
 
 @Component({
   name: 'FixedHeaderTable'
@@ -70,8 +70,8 @@ export default class extends Vue {
 
   @Watch('checkboxVal')
   private onCheckboxValChange(value: string[]) {
-    this.formThead = this.formTheadOptions.filter(i => value.indexOf(i) >= 0)
-    this.key = this.key + 1 // Ensure the table will be re-rendered each time
+    this.formThead = this.formTheadOptions.filter(i => value.indexOf(i) >= 0);
+    this.key = this.key + 1; // Ensure the table will be re-rendered each time
   }
 }
 </script>

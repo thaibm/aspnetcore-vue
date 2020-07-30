@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'DropdownMenu'
@@ -37,7 +37,7 @@ export default class extends Vue {
   private isActive = false
 
   private clickTitle() {
-    this.isActive = !this.isActive
+    this.isActive = !this.isActive;
   }
 }
 </script>

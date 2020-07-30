@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import screenfull from 'screenfull'
-import { Component, Vue } from 'vue-property-decorator'
+import screenfull from 'screenfull';
+import { Component, Vue } from 'vue-property-decorator';
 
-const sf = screenfull
+const sf = screenfull;
 
 @Component({
   name: 'Screenfull'
@@ -21,19 +21,19 @@ export default class extends Vue {
 
   mounted() {
     if (sf.isEnabled) {
-      sf.on('change', this.change)
+      sf.on('change', this.change);
     }
   }
 
   beforeDestory() {
     if (sf.isEnabled) {
-      sf.off('change', this.change)
+      sf.off('change', this.change);
     }
   }
 
   private change() {
     if (sf.isEnabled) {
-      this.isFullscreen = sf.isFullscreen
+      this.isFullscreen = sf.isFullscreen;
     }
   }
 
@@ -42,10 +42,10 @@ export default class extends Vue {
       this.$message({
         message: 'you browser can not work',
         type: 'warning'
-      })
-      return false
+      });
+      return false;
     }
-    sf.toggle()
+    sf.toggle();
   }
 }
 </script>

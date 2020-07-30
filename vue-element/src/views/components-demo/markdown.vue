@@ -75,9 +75,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
-import MarkdownEditor from '@/components/MarkdownEditor/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+import MarkdownEditor from '@/components/MarkdownEditor/index.vue';
 
 const content = `
 **This is test**
@@ -85,7 +85,7 @@ const content = `
 * vue
 * element
 * webpack
-`
+`;
 
 @Component({
   name: 'MarkdownDemo',
@@ -110,15 +110,15 @@ export default class extends Vue {
 
   mounted() {
     // FIXES weird focus issue caused by MarkdownEditor
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
 
   get language() {
-    return this.languageTypeList[AppModule.language]
+    return this.languageTypeList[AppModule.language];
   }
 
   private getHtml() {
-    this.html = (this.$refs.markdownEditor as MarkdownEditor).getHtml()
+    this.html = (this.$refs.markdownEditor as MarkdownEditor).getHtml();
   }
 }
 </script>

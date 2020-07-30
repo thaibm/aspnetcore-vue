@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import FixedHeaderTable from './components/FixedHeaderTable.vue'
-import UnfixedHeaderTable from './components/UnfixedHeaderTable.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import FixedHeaderTable from './components/FixedHeaderTable.vue';
+import UnfixedHeaderTable from './components/UnfixedHeaderTable.vue';
 
 @Component({
   name: 'DynamicTable',

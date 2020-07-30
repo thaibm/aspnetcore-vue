@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import Router, { RouteConfig } from 'vue-router'
+import Vue from 'vue';
+import Router, { RouteConfig } from 'vue-router';
 
 /* Layout */
-import Layout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue';
 
 /* Router modules */
-import componentsRouter from './modules/components'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+import componentsRouter from './modules/components';
+import tableRouter from './modules/table';
+import nestedRouter from './modules/nested';
 
-Vue.use(Router)
+Vue.use(Router);
 
 /*
   Note: sub-menu only appear when children.length>=1
@@ -106,7 +106,7 @@ export const constantRoutes: RouteConfig[] = [
       }
     ]
   }
-]
+];
 
 /**
  * asyncRoutes
@@ -235,27 +235,27 @@ export const asyncRoutes: RouteConfig[] = [
     redirect: '/dashboard',
     meta: { hidden: true }
   }
-]
+];
 
 const createRouter = () => new Router({
   // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     } else {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0 };
     }
   },
   base: process.env.BASE_URL,
   routes: constantRoutes
-})
+});
 
-const router = createRouter()
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter();
-  (router as any).matcher = (newRouter as any).matcher // reset router
+  (router as any).matcher = (newRouter as any).matcher; // reset router
 }
 
-export default router
+export default router;

@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'UploadImage'
@@ -58,19 +58,19 @@ export default class extends Vue {
   private dataObj = { token: '', key: '' }
 
   get imageUrl() {
-    return this.value
+    return this.value;
   }
 
   private emitInput(value: string) {
-    this.$emit('input', value)
+    this.$emit('input', value);
   }
 
   private rmImage() {
-    this.emitInput('')
+    this.emitInput('');
   }
 
   private handleImageSuccess(res: any) {
-    this.emitInput(res.files.file)
+    this.emitInput(res.files.file);
   }
 }
 </script>

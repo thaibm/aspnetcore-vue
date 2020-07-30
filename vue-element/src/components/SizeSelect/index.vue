@@ -25,9 +25,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
-import { TagsViewModule } from '@/store/modules/tags-view'
+import { Component, Vue } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+import { TagsViewModule } from '@/store/modules/tags-view';
 
 @Component({
   name: 'SizeSelect'
@@ -41,28 +41,28 @@ export default class extends Vue {
   ]
 
   get size() {
-    return AppModule.size
+    return AppModule.size;
   }
 
   private handleSetSize(size: string) {
-    (this as any).$ELEMENT.size = size
-    AppModule.SetSize(size)
-    this.refreshView()
+    (this as any).$ELEMENT.size = size;
+    AppModule.SetSize(size);
+    this.refreshView();
     this.$message({
       message: 'Switch Size Success',
       type: 'success'
-    })
+    });
   }
 
   private refreshView() {
     // In order to make the cached page re-rendered
-    TagsViewModule.delAllCachedViews()
-    const { fullPath } = this.$route
+    TagsViewModule.delAllCachedViews();
+    const { fullPath } = this.$route;
     this.$nextTick(() => {
       this.$router.replace({
         path: '/redirect' + fullPath
-      })
-    })
+      });
+    });
   }
 }
 </script>

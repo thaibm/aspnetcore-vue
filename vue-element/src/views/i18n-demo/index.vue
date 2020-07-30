@@ -156,9 +156,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
-import local from './local'
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+import local from './local';
 
 @Component({
   name: 'I18n'
@@ -189,24 +189,24 @@ export default class extends Vue {
   }]
 
   get lang() {
-    return AppModule.language
+    return AppModule.language;
   }
 
   set lang(lang) {
-    AppModule.SetLanguage(lang)
-    this.$i18n.locale = lang
-    this.setOptions()
+    AppModule.SetLanguage(lang);
+    this.$i18n.locale = lang;
+    this.setOptions();
   }
 
   created() {
-    const viewName = 'i18nView'
+    const viewName = 'i18nView';
     if (!this.$i18n.getLocaleMessage('en')[viewName]) {
-      this.$i18n.mergeLocaleMessage('en', local.en)
-      this.$i18n.mergeLocaleMessage('zh', local.zh)
-      this.$i18n.mergeLocaleMessage('es', local.es)
-      this.$i18n.mergeLocaleMessage('ja', local.ja)
+      this.$i18n.mergeLocaleMessage('en', local.en);
+      this.$i18n.mergeLocaleMessage('zh', local.zh);
+      this.$i18n.mergeLocaleMessage('es', local.es);
+      this.$i18n.mergeLocaleMessage('ja', local.ja);
     }
-    this.setOptions() // set default select options
+    this.setOptions(); // set default select options
   }
 
   private setOptions() {
@@ -223,7 +223,7 @@ export default class extends Vue {
         value: '3',
         label: this.$t('i18nView.three')
       }
-    ]
+    ];
   }
 }
 </script>

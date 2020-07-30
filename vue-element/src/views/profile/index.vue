@@ -41,12 +41,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { UserModule } from '@/store/modules/user'
-import Account from './components/Account.vue'
-import Activity from './components/Activity.vue'
-import Timeline from './components/Timeline.vue'
-import UserCard from './components/UserCard.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { UserModule } from '@/store/modules/user';
+import Account from './components/Account.vue';
+import Activity from './components/Activity.vue';
+import Timeline from './components/Timeline.vue';
+import UserCard from './components/UserCard.vue';
 
 export interface IProfile {
   name: string
@@ -60,7 +60,7 @@ const defaultProfile: IProfile = {
   email: 'Loading...',
   avatar: 'Loading...',
   roles: 'Loading...'
-}
+};
 
 @Component({
   name: 'Profile',
@@ -76,23 +76,23 @@ export default class extends Vue {
   private activeTab = 'activity'
 
   get name() {
-    return UserModule.name
+    return UserModule.name;
   }
 
   get email() {
-    return UserModule.email
+    return UserModule.email;
   }
 
   get avatar() {
-    return UserModule.avatar
+    return UserModule.avatar;
   }
 
   get roles() {
-    return UserModule.roles
+    return UserModule.roles;
   }
 
   created() {
-    this.getUser()
+    this.getUser();
   }
 
   private getUser() {
@@ -101,7 +101,7 @@ export default class extends Vue {
       email: this.email,
       avatar: this.avatar,
       roles: this.roles.join(' | ')
-    }
+    };
   }
 }
 </script>

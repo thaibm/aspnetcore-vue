@@ -1,5 +1,5 @@
-import { RouteConfig } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import { RouteConfig } from 'vue-router';
+import Layout from '@/layout/index.vue';
 
 const componentsRouter: RouteConfig = {
   path: '/components',
@@ -42,6 +42,6 @@ const componentsRouter: RouteConfig = {
       meta: { title: 'backToTop' }
     }
   ]
-}
+};
 
-export default componentsRouter
+export default componentsRouter;

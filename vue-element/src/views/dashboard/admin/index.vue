@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import TodoList from './components/TodoList/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import TodoList from './components/TodoList/index.vue';
 
 @Component({
   name: 'DashboardAdmin',

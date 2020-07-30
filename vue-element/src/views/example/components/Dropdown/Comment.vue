@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'CommentDropdown'
@@ -38,11 +38,11 @@ export default class extends Vue {
   @Prop({ required: true }) private value!: boolean
 
   get disableComment() {
-    return this.value
+    return this.value;
   }
 
   set disableComment(value) {
-    this.$emit('input', value)
+    this.$emit('input', value);
   }
 }
 </script>

@@ -61,15 +61,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import Todo, { ITodo } from './Todo.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import Todo, { ITodo } from './Todo.vue';
 
-const STORAGE_KEY = 'todos'
+const STORAGE_KEY = 'todos';
 const filters: { [ key: string ]: Function } = {
   all: (todos: ITodo[]) => todos,
   active: (todos: ITodo[]) => todos.filter(todo => !todo.done),
   completed: (todos: ITodo[]) => todos.filter(todo => todo.done)
-}
+};
 const defalutList = [
   { text: 'star this repository', done: false },
   { text: 'fork this repository', done: false },
@@ -79,7 +79,7 @@ const defalutList = [
   { text: 'element-ui', done: true },
   { text: 'axios', done: true },
   { text: 'webpack', done: true }
-]
+];
 
 @Component({
   name: 'TodoList',
@@ -96,62 +96,62 @@ export default class extends Vue {
   private todos = defalutList
 
   get allChecked() {
-    return this.todos.every(todo => todo.done)
+    return this.todos.every(todo => todo.done);
   }
 
   get filters() {
-    return filters
+    return filters;
   }
 
   get filteredTodos() {
-    return filters[this.visibility](this.todos)
+    return filters[this.visibility](this.todos);
   }
 
   get remaining() {
-    return this.todos.filter(todo => !todo.done).length
+    return this.todos.filter(todo => !todo.done).length;
   }
 
   private setLocalStorage() {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos))
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
   }
 
   private addTodo(e: KeyboardEvent) {
-    const text = (e.target as HTMLInputElement).value
+    const text = (e.target as HTMLInputElement).value;
     if (text.trim()) {
       this.todos.push({
         text,
         done: false
-      })
-      this.setLocalStorage()
+      });
+      this.setLocalStorage();
     }
-    (e as any).target.value = ''
+    (e as any).target.value = '';
   }
 
   private toggleTodo(todo: ITodo) {
-    todo.done = !todo.done
-    this.setLocalStorage()
+    todo.done = !todo.done;
+    this.setLocalStorage();
   }
 
   private deleteTodo(todo: ITodo) {
-    this.todos.splice(this.todos.indexOf(todo), 1)
-    this.setLocalStorage()
+    this.todos.splice(this.todos.indexOf(todo), 1);
+    this.setLocalStorage();
   }
 
   private editTodo({ todo, value }: { todo: ITodo, value: string }) {
-    todo.text = value
-    this.setLocalStorage()
+    todo.text = value;
+    this.setLocalStorage();
   }
 
   private clearCompleted() {
-    this.todos = this.todos.filter(todo => !todo.done)
-    this.setLocalStorage()
+    this.todos = this.todos.filter(todo => !todo.done);
+    this.setLocalStorage();
   }
 
   private toggleAll({ done }: { done: boolean }) {
     this.todos.forEach(todo => {
-      todo.done = done
-      this.setLocalStorage()
-    })
+      todo.done = done;
+      this.setLocalStorage();
+    });
   }
 }
 </script>
