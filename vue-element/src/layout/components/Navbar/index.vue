@@ -47,17 +47,11 @@
           </router-link>
           <a
             target="_blank"
-            href="https://github.com/armour/vue-typescript-admin-template/"
+            href="https://github.com/thaibm"
           >
             <el-dropdown-item>
               {{ $t('navbar.github') }}
             </el-dropdown-item>
-          </a>
-          <a
-            target="_blank"
-            href="https://armour.github.io/vue-typescript-admin-docs/"
-          >
-            <el-dropdown-item>Docs</el-dropdown-item>
           </a>
           <el-dropdown-item
             divided
@@ -74,15 +68,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
-import { UserModule } from '@/store/modules/user'
-import Breadcrumb from '@/components/Breadcrumb/index.vue'
-import Hamburger from '@/components/Hamburger/index.vue'
-import HeaderSearch from '@/components/HeaderSearch/index.vue'
-import LangSelect from '@/components/LangSelect/index.vue'
-import Screenfull from '@/components/Screenfull/index.vue'
-import SizeSelect from '@/components/SizeSelect/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { AppModule } from '@/store/modules/app';
+import { UserModule } from '@/store/modules/user';
+import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Hamburger from '@/components/Hamburger/index.vue';
+import HeaderSearch from '@/components/HeaderSearch/index.vue';
+import LangSelect from '@/components/LangSelect/index.vue';
+import Screenfull from '@/components/Screenfull/index.vue';
+import SizeSelect from '@/components/SizeSelect/index.vue';
 
 @Component({
   name: 'Navbar',
@@ -97,24 +91,24 @@ import SizeSelect from '@/components/SizeSelect/index.vue'
 })
 export default class extends Vue {
   get sidebar() {
-    return AppModule.sidebar
+    return AppModule.sidebar;
   }
 
   get device() {
-    return AppModule.device.toString()
+    return AppModule.device.toString();
   }
 
   get avatar() {
-    return UserModule.avatar
+    return UserModule.avatar;
   }
 
   private toggleSideBar() {
-    AppModule.ToggleSideBar(false)
+    AppModule.ToggleSideBar(false);
   }
 
   private async logout() {
-    await UserModule.LogOut()
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    await UserModule.LogOut();
+    this.$router.push(`/login?redirect=${this.$route.fullPath}`);
   }
 }
 </script>

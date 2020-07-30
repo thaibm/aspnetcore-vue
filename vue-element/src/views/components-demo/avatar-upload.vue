@@ -33,9 +33,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import AvatarUpload from '@/components/AvatarUpload/index.vue'
-import PanThumb from '@/components/PanThumb/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import AvatarUpload from '@/components/AvatarUpload/index.vue';
+import PanThumb from '@/components/PanThumb/index.vue';
 
 @Component({
   name: 'AvatarUploadDemo',
@@ -51,16 +51,16 @@ export default class extends Vue {
   private headers = { smail: '*_~' }
 
   private toggleShow() {
-    this.showImageUpload = !this.showImageUpload
+    this.showImageUpload = !this.showImageUpload;
   }
 
   private onCropUploadSuccess(jsonData: any, field: string) {
-    this.showImageUpload = false
-    this.image = jsonData.files[field]
+    this.showImageUpload = false;
+    this.image = jsonData.files[field];
   }
 
   private onClose() {
-    this.showImageUpload = false
+    this.showImageUpload = false;
   }
 }
 </script>

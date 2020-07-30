@@ -1,5 +1,5 @@
-import { RouteConfig } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import { RouteConfig } from 'vue-router';
+import Layout from '@/layout/index.vue';
 
 const nestedRoutes: RouteConfig = {
   path: '/nested',
@@ -60,6 +60,6 @@ const nestedRoutes: RouteConfig = {
       meta: { title: 'menu2' }
     }
   ]
-}
+};
 
-export default nestedRoutes
+export default nestedRoutes;

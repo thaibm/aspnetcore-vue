@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'SourceUrlDropdown'
@@ -40,11 +40,11 @@ export default class extends Vue {
   @Prop({ required: true }) private value!: string
 
   get sourceURL() {
-    return this.value
+    return this.value;
   }
 
   set sourceURL(value) {
-    this.$emit('input', value)
+    this.$emit('input', value);
   }
 }
 </script>

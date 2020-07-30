@@ -129,8 +129,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import BackToTop from '@/components/BackToTop/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import BackToTop from '@/components/BackToTop/index.vue';
 
 @Component({
   name: 'BackToTopDemo',

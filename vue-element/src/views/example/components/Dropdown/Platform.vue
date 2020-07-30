@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'PlatformDropdown'
@@ -41,11 +41,11 @@ export default class extends Vue {
   ]
 
   get platforms() {
-    return this.value
+    return this.value;
   }
 
   set platforms(value) {
-    this.$emit('input', value)
+    this.$emit('input', value);
   }
 }
 </script>

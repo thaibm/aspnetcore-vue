@@ -23,14 +23,14 @@
 
 <script lang="ts">
 // import openWindow from '@/utils/openWindow'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'SocialSignin'
 })
 export default class extends Vue {
   private wechatHandleClick(thirdpart: any) {
-    alert('ok')
+    alert('ok');
     // this.$store.commit('SET_AUTH_TYPE', thirdpart)
     // const appid = 'xxxxx'
     // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')
@@ -39,7 +39,7 @@ export default class extends Vue {
   }
 
   private tencentHandleClick(thirdpart: any) {
-    alert('ok')
+    alert('ok');
     // this.$store.commit('SET_AUTH_TYPE', thirdpart)
     // const client_id = 'xxxxx'
     // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')

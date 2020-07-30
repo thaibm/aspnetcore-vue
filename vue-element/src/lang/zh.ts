@@ -172,4 +172,4 @@ export default {
     fixedHeader: '固定 Header',
     sidebarTextTheme: '侧边栏文字主题色'
   }
-}
+};
