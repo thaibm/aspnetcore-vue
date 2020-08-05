@@ -1,3 +1,4 @@
+import { IUsersState } from './modules/management/users';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { IAppState } from './modules/app';
@@ -13,7 +14,8 @@ export interface IRootState {
   user: IUserState
   tagsView: ITagsViewState
   permission: IPermissionState
-  settings: ISettingsState
+  settings: ISettingsState,
+  users: IUsersState
 }
 
 // Declare empty store first, dynamically register all modules later.

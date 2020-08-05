@@ -36,7 +36,8 @@ export default {
     theme: 'Theme',
     i18n: 'I18n',
     externalLink: 'External Link',
-    profile: 'Profile'
+    profile: 'Profile',
+    usersManagement: 'Users Management'
   },
   navbar: {
     logOut: 'Log Out',
