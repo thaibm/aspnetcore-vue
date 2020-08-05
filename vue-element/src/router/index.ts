@@ -114,6 +114,22 @@ export const constantRoutes: RouteConfig[] = [
 */
 export const asyncRoutes: RouteConfig[] = [
   {
+    path: '/management',
+    component: Layout,
+    children: [
+      {
+        path: 'users',
+        component: () => import(/* webpackChunkName: "icons" */ '@/views/management/users/index.vue'),
+        name: 'Users',
+        meta: {
+          title: 'usersManagement',
+          icon: 'user',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
     path: '/icon',
     component: Layout,
     children: [
@@ -133,46 +149,46 @@ export const asyncRoutes: RouteConfig[] = [
   componentsRouter,
   nestedRouter,
   tableRouter,
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/list',
-    meta: {
-      title: 'example',
-      icon: 'example'
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import(/* webpackChunkName: "example-create" */ '@/views/example/create.vue'),
-        name: 'CreateArticle',
-        meta: {
-          title: 'createArticle',
-          icon: 'edit'
-        }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import(/* webpackChunkName: "example-edit" */ '@/views/example/edit.vue'),
-        name: 'EditArticle',
-        meta: {
-          title: 'editArticle',
-          noCache: true,
-          activeMenu: '/example/list',
-          hidden: true
-        }
-      },
-      {
-        path: 'list',
-        component: () => import(/* webpackChunkName: "example-list" */ '@/views/example/list.vue'),
-        name: 'ArticleList',
-        meta: {
-          title: 'articleList',
-          icon: 'list'
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/list',
+  //   meta: {
+  //     title: 'example',
+  //     icon: 'example'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'create',
+  //       component: () => import(/* webpackChunkName: "example-create" */ '@/views/example/create.vue'),
+  //       name: 'CreateArticle',
+  //       meta: {
+  //         title: 'createArticle',
+  //         icon: 'edit'
+  //       }
+  //     },
+  //     {
+  //       path: 'edit/:id(\\d+)',
+  //       component: () => import(/* webpackChunkName: "example-edit" */ '@/views/example/edit.vue'),
+  //       name: 'EditArticle',
+  //       meta: {
+  //         title: 'editArticle',
+  //         noCache: true,
+  //         activeMenu: '/example/list',
+  //         hidden: true
+  //       }
+  //     },
+  //     {
+  //       path: 'list',
+  //       component: () => import(/* webpackChunkName: "example-list" */ '@/views/example/list.vue'),
+  //       name: 'ArticleList',
+  //       meta: {
+  //         title: 'articleList',
+  //         icon: 'list'
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/error',
     component: Layout,
