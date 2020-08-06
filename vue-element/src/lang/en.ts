@@ -111,5 +111,10 @@ export default {
     showSidebarLogo: 'Sidebar Logo',
     fixedHeader: 'Fixed Header',
     sidebarTextTheme: 'Sidebar Text Theme'
+  },
+  management: {
+    users: {
+      name: 'Name'
+    }
   }
 };
