@@ -18,6 +18,12 @@
         prop="emailAddress"
         label="Email Address"
       />
+      <!-- Custom row template -->
+      <el-table-column label="Active">
+        <template slot-scope="scope">
+          <span>{{ scope.row.isActive ? 'Yes' : 'No' }}</span>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
