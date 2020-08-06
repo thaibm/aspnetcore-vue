@@ -15,7 +15,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] = 'Bearer ' + UserModule.token;
     }
     // config.headers.common[".AspNetCore.Culture"] = 'vi'
-    config.headers.common['Abp.TenantId'] = null;
+    // config.headers.common['Abp.TenantId'] = null;
     return config;
   },
   (error) => {
@@ -38,6 +38,11 @@ service.interceptors.response.use(
     }
   },
   (error) => {
+    Message({
+      message: error,
+      type: 'error',
+      duration: 5 * 1000
+    });
     return Promise.reject(error.response);
   }
 );

@@ -29,6 +29,8 @@ Vue.use(SvgIcon, {
   defaultHeight: '1em'
 });
 
+Vue.use(require('vue-moment'));
+
 // Register global directives
 Object.keys(directives).forEach(key => {
   Vue.directive(key, (directives as { [key: string ]: DirectiveOptions })[key]);

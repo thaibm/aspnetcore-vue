@@ -13,7 +13,7 @@ const tableRoutes: RouteConfig = {
   children: [
     {
       path: 'basic-table',
-      component: () => import(/* webpackChunkName: "dynamic-table" */ '@/views/table/basic-table.vue'),
+      component: () => import(/* webpackChunkName: "dynamic-table" */ '@/views/management/users/index.vue'),
       name: 'BasicTable',
       meta: { title: 'basicTable' }
     },
