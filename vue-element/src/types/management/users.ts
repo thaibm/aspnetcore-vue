@@ -4,6 +4,6 @@ export interface IUserParams {
     surname: string;
     emailAddress: string;
     isActive: boolean;
-    roleNames: string;
+    roleNames: string[];
     password: string;
 }

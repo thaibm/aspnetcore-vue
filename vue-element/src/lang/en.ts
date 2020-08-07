@@ -114,7 +114,11 @@ export default {
   },
   management: {
     users: {
-      name: 'Name'
+      name: 'Name',
+      userName: 'User Name',
+      password: 'Password',
+      surname: 'Surname',
+      emailAddress: 'Email Address'
     }
   }
 };

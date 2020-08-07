@@ -62,7 +62,10 @@
       </el-table-column>
     </el-table>
 
-    <AddUserDiablog ref="AddUserDiablog" />
+    <AddUserDiablog
+      ref="AddUserDiablog"
+      @created="fetchUsers()"
+    />
   </div>
 </template>
 
@@ -84,6 +87,10 @@ export default class extends Vue {
   private AddUserDiablog!: AddUserDiablog;
 
   private async mounted() {
+    await this.fetchUsers();
+  }
+
+  private async fetchUsers() {
     const { result } = await UsersModule.getAllUsers({});
     this.users = result?.items;
   }

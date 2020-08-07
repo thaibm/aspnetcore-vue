@@ -8,13 +8,18 @@
       ref="addUserForm"
       :model="form"
       :rules="rules"
+      label-width="120px"
+      status-icon
     >
       <!-- UserName -->
       <el-form-item
         :label="$t('management.users.userName')"
         prop="userName"
       >
-        <el-input v-model="form.userName" />
+        <el-input
+          v-model="form.userName"
+          autocomplete="off"
+        />
       </el-form-item>
       <!-- Password -->
       <el-form-item
@@ -24,6 +29,7 @@
         <el-input
           v-model="form.password"
           type="password"
+          autocomplete="off"
         />
       </el-form-item>
       <!-- Name -->
@@ -47,13 +53,6 @@
       >
         <el-input v-model="form.emailAddress" />
       </el-form-item>
-      <!-- Active -->
-      <el-form-item
-        label="Active"
-        prop="isActive"
-      >
-        <el-switch v-model="form.isActive" />
-      </el-form-item>
       <!-- Role -->
       <el-form-item
         label="Role"
@@ -62,12 +61,24 @@
         <el-select
           v-model="form.roleNames"
           placeholder="Role Name"
+          multiple
         >
           <el-option
             label="Admin"
             value="admin"
           />
+          <el-option
+            label="Editor"
+            value="editor"
+          />
         </el-select>
+      </el-form-item>
+      <!-- Active -->
+      <el-form-item
+        label="Active"
+        prop="isActive"
+      >
+        <el-switch v-model="form.isActive" />
       </el-form-item>
     </el-form>
     <!-- Dialog Footer -->
@@ -85,10 +96,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Ref } from 'vue-property-decorator';
+import { Component, Vue, Ref, Emit } from 'vue-property-decorator';
 import TodoList from './components/TodoList/index.vue';
 import { IUserParams } from '@/types/management/users';
 import { ElForm } from 'element-ui/types/form';
+import { UserModule } from '@/store/modules/user';
+import { UsersModule } from '@/store/modules/management/users';
+import { EventEmitter } from 'events';
+
+const defaultUserParams: IUserParams = {
+  name: '',
+  surname: '',
+  userName: '',
+  emailAddress: '',
+  isActive: true,
+  roleNames: [],
+  password: ''
+};
 
 @Component({
   name: 'AddUserDiablog'
@@ -96,17 +120,8 @@ import { ElForm } from 'element-ui/types/form';
 export default class AddUserDiablog extends Vue {
   @Ref('addUserForm')
   private addUserForm!: ElForm;
-
+  private form: IUserParams = { ...defaultUserParams };
   private dialogVisible: boolean = false;
-  private form: IUserParams = {
-    name: '',
-    surname: '',
-    userName: '',
-    emailAddress: '',
-    isActive: true,
-    roleNames: '',
-    password: ''
-  };
 
   private rules = {
     name: [
@@ -132,6 +147,18 @@ export default class AddUserDiablog extends Vue {
 
   private async submit() {
     const isValid = await this.addUserForm.validate();
+    if (isValid) {
+      await UsersModule.createUser(this.form);
+      this.form = { ...defaultUserParams };
+      this.addUserForm.clearValidate();
+      this.createdUser();
+      this.close();
+    }
+  }
+
+  @Emit('created')
+  private createdUser() {
+    return true;
   }
 
   public open() {
@@ -139,6 +166,8 @@ export default class AddUserDiablog extends Vue {
   }
 
   public close() {
+    this.form = { ...defaultUserParams };
+    this.addUserForm.clearValidate();
     this.dialogVisible = false;
   }
 }

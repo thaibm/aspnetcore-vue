@@ -1,7 +1,8 @@
 import { Message } from 'element-ui';
-import { getAllUsersAPI } from '@/api/management/users';
+import { getAllUsersAPI, createUserAPI } from '@/api/management/users';
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators';
 import store from '@/store';
+import { IUserParams } from '@/types/management/users';
 
 export interface IUsersState {
 
@@ -13,6 +14,17 @@ class Users extends VuexModule implements IUsersState {
   public async getAllUsers(params: any) {
     try {
       const { data } = await getAllUsersAPI(params);
+      return data;
+    } catch (error) {
+      Message.error(error);
+      return [];
+    }
+  }
+
+  @Action
+  public async createUser(payload: IUserParams) {
+    try {
+      const { data } = await createUserAPI(payload);
       return data;
     } catch (error) {
       Message.error(error);
