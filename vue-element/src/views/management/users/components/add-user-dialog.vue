@@ -90,7 +90,7 @@
       <el-button
         type="primary"
         @click="submit()"
-      >Add User</el-button>
+      >{{ $t('management.users.addUser') }}</el-button>
     </span>
   </el-dialog>
 </template>

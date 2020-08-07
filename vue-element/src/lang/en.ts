@@ -118,7 +118,8 @@ export default {
       userName: 'User Name',
       password: 'Password',
       surname: 'Surname',
-      emailAddress: 'Email Address'
+      emailAddress: 'Email Address',
+      addUser: 'Add User'
     }
   }
 };
