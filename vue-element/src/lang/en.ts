@@ -119,7 +119,9 @@ export default {
       password: 'Password',
       surname: 'Surname',
       emailAddress: 'Email Address',
-      addUser: 'Add User'
+      addUser: 'Add User',
+      confirmDelete: 'Confirm Delete',
+      confirmDeleteMessage: 'Are you sure?'
     }
   }
 };
