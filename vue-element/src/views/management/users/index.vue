@@ -47,14 +47,20 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="Action">
-        <template>
+      <el-table-column
+        label="Action"
+        width="200"
+      >
+        <template slot-scope="scope">
           <div>
             <el-button type="primary">
               <!-- $t('key'): i18n multiple language -->
               {{ $t('table.edit') }}
             </el-button>
-            <el-button type="danger">
+            <el-button
+              type="danger"
+              @click="deleteUser(scope.row.id)"
+            >
               {{ $t('table.delete') }}
             </el-button>
           </div>
@@ -73,6 +79,7 @@
 import { Component, Vue, Ref } from 'vue-property-decorator';
 import { UsersModule } from '@/store/modules/management/users';
 import AddUserDiablog from './components/add-user-dialog.vue';
+import { MessageBox } from 'element-ui';
 
 @Component({
   name: 'Users',
@@ -93,6 +100,17 @@ export default class extends Vue {
   private async fetchUsers() {
     const { result } = await UsersModule.getAllUsers({});
     this.users = result?.items;
+  }
+
+  private deleteUser(id: string) {
+    MessageBox.confirm(this.$t('management.users.confirmDeleteMessage').toString(), this.$t('management.users.confirmDelete').toString(), {
+      type: 'warning'
+    }).then(async() => {
+      await UsersModule.deleteUser(id);
+      await this.fetchUsers();
+    }).catch(error => {
+      console.error(error);
+    });
   }
 }
 </script>

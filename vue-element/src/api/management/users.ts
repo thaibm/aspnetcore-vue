@@ -14,3 +14,10 @@ export const createUserAPI = (data: IUserParams) =>
     method: 'POST',
     data
   });
+
+export const deleteUserAPI = (id: string) =>
+  request({
+    url: '/api/services/app/User/Delete',
+    method: 'DELETE',
+    params: { id }
+  });
