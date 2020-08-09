@@ -15,6 +15,13 @@ export const createUserAPI = (data: IUserParams) =>
     data
   });
 
+export const updateUserAPI = (data: IUserParams) =>
+  request({
+    url: '/api/services/app/User/Update',
+    method: 'PUT',
+    data
+  });
+
 export const deleteUserAPI = (id: string) =>
   request({
     url: '/api/services/app/User/Delete',
