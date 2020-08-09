@@ -26,7 +26,12 @@ module.exports = {
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',
     'vue/object-curly-spacing': 'error',
-    'semi': ['error', 'always', { 'omitLastInOneLineBlock': true }]
+    'semi': ['error', 'always', { 'omitLastInOneLineBlock': true }],
+    'space-before-function-paren': ['error', {
+      'anonymous': 'always',
+      'named': 'never',
+      'asyncArrow': 'always'
+  }],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'

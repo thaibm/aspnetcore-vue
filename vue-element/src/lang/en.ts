@@ -120,6 +120,8 @@ export default {
       surname: 'Surname',
       emailAddress: 'Email Address',
       addUser: 'Add User',
+      editUser: 'Edit User',
+      updateUser: 'Update User',
       confirmDelete: 'Confirm Delete',
       confirmDeleteMessage: 'Are you sure?'
     }

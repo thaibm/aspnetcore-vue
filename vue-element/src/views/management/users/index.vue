@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-button
       type="primary"
-      @click="AddUserDiablog.open()"
+      @click="AddOrEditUserDiablog.open()"
     >
       <!-- $t('key'): i18n multiple language -->
       {{ $t('table.add') }}
@@ -53,7 +53,10 @@
       >
         <template slot-scope="scope">
           <div>
-            <el-button type="primary">
+            <el-button
+              type="primary"
+              @click="openEditUserDialog(scope.row)"
+            >
               <!-- $t('key'): i18n multiple language -->
               {{ $t('table.edit') }}
             </el-button>
@@ -68,9 +71,9 @@
       </el-table-column>
     </el-table>
 
-    <AddUserDiablog
-      ref="AddUserDiablog"
-      @created="fetchUsers()"
+    <AddOrEditUserDiablog
+      ref="AddOrEditUserDiablog"
+      @submitted="fetchUsers()"
     />
   </div>
 </template>
@@ -78,20 +81,21 @@
 <script lang="ts">
 import { Component, Vue, Ref } from 'vue-property-decorator';
 import { UsersModule } from '@/store/modules/management/users';
-import AddUserDiablog from './components/add-user-dialog.vue';
+import AddOrEditUserDiablog from './components/add-or-edit-user-dialog.vue';
 import { MessageBox } from 'element-ui';
+import { IUser } from '@/types/management/users';
 
 @Component({
   name: 'Users',
   components: {
-    AddUserDiablog
+    AddOrEditUserDiablog
   }
 })
 export default class extends Vue {
-  users: any[] = [];
+  users: IUser[] = [];
 
-  @Ref('AddUserDiablog')
-  private AddUserDiablog!: AddUserDiablog;
+  @Ref('AddOrEditUserDiablog')
+  private AddOrEditUserDiablog!: AddOrEditUserDiablog;
 
   private async mounted() {
     await this.fetchUsers();
@@ -103,13 +107,27 @@ export default class extends Vue {
   }
 
   private deleteUser(id: string) {
-    MessageBox.confirm(this.$t('management.users.confirmDeleteMessage').toString(), this.$t('management.users.confirmDelete').toString(), {
-      type: 'warning'
-    }).then(async() => {
+    MessageBox.confirm(
+      this.$t('management.users.confirmDeleteMessage').toString(),
+      this.$t('management.users.confirmDelete').toString(),
+      { type: 'warning' }
+    ).then(async () => {
       await UsersModule.deleteUser(id);
       await this.fetchUsers();
     }).catch(error => {
       console.error(error);
+    });
+  }
+
+  private openEditUserDialog(userRow: IUser) {
+    this.AddOrEditUserDiablog.open({
+      userName: userRow.userName,
+      name: userRow.name,
+      surname: userRow.surname,
+      emailAddress: userRow.emailAddress,
+      isActive: userRow.isActive,
+      roleNames: userRow.roleNames,
+      id: userRow.id
     });
   }
 }

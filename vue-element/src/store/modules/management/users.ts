@@ -1,5 +1,5 @@
 import { Message } from 'element-ui';
-import { getAllUsersAPI, createUserAPI, deleteUserAPI } from '@/api/management/users';
+import { getAllUsersAPI, createUserAPI, deleteUserAPI, updateUserAPI } from '@/api/management/users';
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators';
 import store from '@/store';
 import { IUserParams } from '@/types/management/users';
@@ -28,7 +28,18 @@ class Users extends VuexModule implements IUsersState {
       return data;
     } catch (error) {
       Message.error(error);
-      return [];
+      return null;
+    }
+  }
+
+  @Action
+  public async updateUser(payload: IUserParams) {
+    try {
+      const { data } = await updateUserAPI(payload);
+      return data;
+    } catch (error) {
+      Message.error(error);
+      return null;
     }
   }
 
@@ -39,7 +50,7 @@ class Users extends VuexModule implements IUsersState {
       return data;
     } catch (error) {
       Message.error(error);
-      return [];
+      return null;
     }
   }
 }

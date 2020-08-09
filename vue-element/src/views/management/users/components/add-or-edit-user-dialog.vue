@@ -1,14 +1,15 @@
 <template>
   <el-dialog
-    title="Add User"
+    :title="isEdit ? $t('management.users.editUser') : $t('management.users.addUser')"
     :visible.sync="dialogVisible"
+    @closed="addUserForm.clearValidate()"
   >
     <!-- Dialog Content -->
     <el-form
       ref="addUserForm"
       :model="form"
       :rules="rules"
-      label-width="120px"
+      label-width="150px"
       status-icon
     >
       <!-- UserName -->
@@ -23,6 +24,7 @@
       </el-form-item>
       <!-- Password -->
       <el-form-item
+        v-if="!isEdit"
         :label="$t('management.users.password')"
         prop="password"
       >
@@ -90,7 +92,7 @@
       <el-button
         type="primary"
         @click="submit()"
-      >{{ $t('management.users.addUser') }}</el-button>
+      >{{ isEdit ? $t('management.users.updateUser') : $t('management.users.addUser') }}</el-button>
     </span>
   </el-dialog>
 </template>
@@ -115,9 +117,9 @@ const defaultUserParams: IUserParams = {
 };
 
 @Component({
-  name: 'AddUserDiablog'
+  name: 'AddOrEditUserDiablog'
 })
-export default class AddUserDiablog extends Vue {
+export default class AddOrEditUserDiablog extends Vue {
   @Ref('addUserForm')
   private addUserForm!: ElForm;
   private form: IUserParams = { ...defaultUserParams };
@@ -125,43 +127,55 @@ export default class AddUserDiablog extends Vue {
 
   private rules = {
     name: [
-      { required: true, message: 'Please input your name', trigger: 'change' }
+      { required: true, message: 'Please input your name', trigger: 'blur' }
     ],
     surname: [
-      { required: true, message: 'Please input your surname', trigger: 'change' }
+      { required: true, message: 'Please input your surname', trigger: 'blur' }
     ],
     userName: [
-      { required: true, message: 'Please input your user name', trigger: 'change' }
+      { required: true, message: 'Please input your user name', trigger: 'blur' }
     ],
     emailAddress: [
-      { required: true, message: 'Please input your email address', trigger: 'change' },
-      { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+      { required: true, message: 'Please input your email address', trigger: 'blur' },
+      { type: 'email', message: 'Please input correct email address', trigger: ['blur'] }
     ],
     roleNames: [
-      { required: true, message: 'Please input your role name', trigger: ['blur', 'change'] }
+      { required: true, message: 'Please input your role name', trigger: ['blur'] }
     ],
     password: [
-      { required: true, message: 'Please input your password', trigger: 'change' }
+      { required: true, message: 'Please input your password', trigger: 'blur' }
     ]
+  }
+
+  get isEdit(): boolean {
+    return !!this.form.id?.toString();
   }
 
   private async submit() {
     const isValid = await this.addUserForm.validate();
     if (isValid) {
-      await UsersModule.createUser(this.form);
-      this.form = { ...defaultUserParams };
+      if (this.isEdit) {
+        await UsersModule.updateUser(this.form);
+      } else {
+        await UsersModule.createUser(this.form);
+      }
       this.addUserForm.clearValidate();
-      this.createdUser();
+      this.submitted();
       this.close();
     }
   }
 
-  @Emit('created')
-  private createdUser() {
+  @Emit('submitted')
+  private submitted() {
     return true;
   }
 
-  public open() {
+  public open(user?: IUserParams) {
+    if (user) {
+      this.form = { ...user };
+    } else {
+      this.form = { ...defaultUserParams };
+    }
     this.dialogVisible = true;
   }
 
