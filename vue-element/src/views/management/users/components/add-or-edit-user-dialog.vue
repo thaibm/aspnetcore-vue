@@ -100,13 +100,13 @@
 <script lang="ts">
 import { Component, Vue, Ref, Emit } from 'vue-property-decorator';
 import TodoList from './components/TodoList/index.vue';
-import { IUserParams } from '@/types/management/users';
+import { IUserPayload } from '@/types/management/users';
 import { ElForm } from 'element-ui/types/form';
 import { UserModule } from '@/store/modules/user';
 import { UsersModule } from '@/store/modules/management/users';
 import { EventEmitter } from 'events';
 
-const defaultUserParams: IUserParams = {
+const defaultUserParams: IUserPayload = {
   name: '',
   surname: '',
   userName: '',
@@ -122,7 +122,7 @@ const defaultUserParams: IUserParams = {
 export default class AddOrEditUserDiablog extends Vue {
   @Ref('addUserForm')
   private addUserForm!: ElForm;
-  private form: IUserParams = { ...defaultUserParams };
+  private form: IUserPayload = { ...defaultUserParams };
   private dialogVisible: boolean = false;
 
   private rules = {
@@ -170,7 +170,7 @@ export default class AddOrEditUserDiablog extends Vue {
     return true;
   }
 
-  public open(user?: IUserParams) {
+  public open(user?: IUserPayload) {
     if (user) {
       this.form = { ...user };
     } else {
