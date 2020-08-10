@@ -1,5 +1,5 @@
 // Create or Update User model
-export interface IUserParams {
+export interface IUserPayload {
     userName: string;
     name: string;
     surname: string;
@@ -22,4 +22,12 @@ export interface IUser {
     roleNames: string[]
     surname: string;
     userName: string;
+}
+
+// Get all user params model
+export interface IUserParams {
+    skipCount?: number;
+    maxResultCount?: number;
+    keyword?: string;
+    isActive?: boolean;
 }

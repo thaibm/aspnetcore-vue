@@ -2,16 +2,14 @@ import { Message } from 'element-ui';
 import { getAllUsersAPI, createUserAPI, deleteUserAPI, updateUserAPI } from '@/api/management/users';
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators';
 import store from '@/store';
-import { IUserParams } from '@/types/management/users';
+import { IUserPayload, IUserParams } from '@/types/management/users';
 
-export interface IUsersState {
-
-}
+export interface IUsersState { }
 
 @Module({ dynamic: true, store, name: 'users' })
 class Users extends VuexModule implements IUsersState {
   @Action
-  public async getAllUsers(params: any) {
+  public async getAllUsers(params: IUserParams) {
     try {
       const { data } = await getAllUsersAPI(params);
       return data;
@@ -22,7 +20,7 @@ class Users extends VuexModule implements IUsersState {
   }
 
   @Action
-  public async createUser(payload: IUserParams) {
+  public async createUser(payload: IUserPayload) {
     try {
       const { data } = await createUserAPI(payload);
       return data;
@@ -33,7 +31,7 @@ class Users extends VuexModule implements IUsersState {
   }
 
   @Action
-  public async updateUser(payload: IUserParams) {
+  public async updateUser(payload: IUserPayload) {
     try {
       const { data } = await updateUserAPI(payload);
       return data;

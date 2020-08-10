@@ -138,7 +138,7 @@ export default class extends Vue {
   }
   private loginForm = {
     username: 'admin',
-    password: '111111'
+    password: '123qwe'
   }
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: 'blur' }],
@@ -187,7 +187,7 @@ export default class extends Vue {
   }
 
   private handleLogin() {
-    (this.$refs.loginForm as ElForm).validate(async(valid: boolean) => {
+    (this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
       if (valid) {
         this.loading = true;
         await UserModule.Login(this.loginForm);
