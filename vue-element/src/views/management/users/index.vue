@@ -117,7 +117,7 @@ export default class extends Vue {
   isLoading: boolean = true;
   users: IUser[] = [];
   totalCount: number = 0;
-  pageSize: number = 2;
+  pageSize: number = 10;
   currentPage: number = 1;
   searchString: string = '';
   search!: () => void;
