@@ -5,8 +5,6 @@ import Router, { RouteConfig } from 'vue-router';
 import Layout from '@/layout/index.vue';
 
 /* Router modules */
-import componentsRouter from './modules/components';
-import tableRouter from './modules/table';
 import nestedRouter from './modules/nested';
 
 Vue.use(Router);
@@ -146,49 +144,7 @@ export const asyncRoutes: RouteConfig[] = [
     ]
   },
   /** when your routing map is too long, you can split it into small modules **/
-  componentsRouter,
   nestedRouter,
-  tableRouter,
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/list',
-  //   meta: {
-  //     title: 'example',
-  //     icon: 'example'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'create',
-  //       component: () => import(/* webpackChunkName: "example-create" */ '@/views/example/create.vue'),
-  //       name: 'CreateArticle',
-  //       meta: {
-  //         title: 'createArticle',
-  //         icon: 'edit'
-  //       }
-  //     },
-  //     {
-  //       path: 'edit/:id(\\d+)',
-  //       component: () => import(/* webpackChunkName: "example-edit" */ '@/views/example/edit.vue'),
-  //       name: 'EditArticle',
-  //       meta: {
-  //         title: 'editArticle',
-  //         noCache: true,
-  //         activeMenu: '/example/list',
-  //         hidden: true
-  //       }
-  //     },
-  //     {
-  //       path: 'list',
-  //       component: () => import(/* webpackChunkName: "example-list" */ '@/views/example/list.vue'),
-  //       name: 'ArticleList',
-  //       meta: {
-  //         title: 'articleList',
-  //         icon: 'list'
-  //       }
-  //     }
-  //   ]
-  // },
   {
     path: '/error',
     component: Layout,
@@ -238,7 +194,7 @@ export const asyncRoutes: RouteConfig[] = [
     component: Layout,
     children: [
       {
-        path: 'https://github.com/Armour/vue-typescript-admin-template',
+        path: 'https://github.com/thaibm',
         meta: {
           title: 'externalLink',
           icon: 'link'
