@@ -7,3 +7,6 @@ bin/
 aspnet-core/src/ASPNETCORE.VUE.Web.Host/App_Data/Logs/
 aspnet-core/src/ASPNETCORE.VUE.Web.Mvc/App_Data/Logs/
 aspnet-core/src/ASPNETCORE.VUE.Migrator/Logs/Logs.txt
+vue/
+vue-element/
+vue-element-mini/
