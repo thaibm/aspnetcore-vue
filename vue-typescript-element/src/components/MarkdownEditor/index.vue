@@ -75,8 +75,8 @@ export default class extends Vue {
     const editorElement = document.getElementById(this.id);
     if (!editorElement) return;
     this.markdownEditor = new TuiEditor({
-      el: editorElement as Element,
-      ...this.editorOptions
+      ...this.editorOptions,
+      el: editorElement as Element
     });
     if (this.value) {
       this.markdownEditor.setValue(this.value);
