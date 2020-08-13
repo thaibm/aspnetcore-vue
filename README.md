@@ -2,6 +2,7 @@
 
 Issues of this repository is base on 
 https://github.com/aspnetboilerplate/aspnetboilerplate. 
+
 https://github.com/Armour/vue-typescript-admin-template.
 
 # Introduction
