@@ -6,6 +6,7 @@ using Abp.IdentityFramework;
 using Abp.Runtime.Session;
 using ASPNETCORE.VUE.Authorization.Users;
 using ASPNETCORE.VUE.MultiTenancy;
+using ASPNETCORE.VUE.Users.Dto;
 
 namespace ASPNETCORE.VUE
 {
@@ -18,14 +19,17 @@ namespace ASPNETCORE.VUE
 
         public UserManager UserManager { get; set; }
 
+        public Users.UserAppService UserAppService { get; set; }
+
         protected VUEAppServiceBase()
         {
             LocalizationSourceName = VUEConsts.LocalizationSourceName;
         }
 
-        protected virtual async Task<User> GetCurrentUserAsync()
+        protected virtual async Task<UserDto> GetCurrentUserAsync()
         {
-            var user = await UserManager.FindByIdAsync(AbpSession.GetUserId().ToString());
+
+            var user = await UserAppService.GetUserByIdAsync(AbpSession.GetUserId());
             if (user == null)
             {
                 throw new Exception("There is no current user!");

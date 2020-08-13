@@ -222,6 +222,13 @@ namespace ASPNETCORE.VUE.Users
 
             return true;
         }
+
+        public async Task<UserDto> GetUserByIdAsync(long id)
+        {
+            var user = await GetEntityByIdAsync(id);
+
+            return MapToEntityDto(user);
+        }
     }
 }
 
