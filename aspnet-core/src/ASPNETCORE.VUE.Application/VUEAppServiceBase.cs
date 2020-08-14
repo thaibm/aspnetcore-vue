@@ -17,8 +17,6 @@ namespace ASPNETCORE.VUE
     {
         public TenantManager TenantManager { get; set; }
 
-        public UserManager UserManager { get; set; }
-
         public Users.UserAppService UserAppService { get; set; }
 
         protected VUEAppServiceBase()
