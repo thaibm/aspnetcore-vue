@@ -114,6 +114,9 @@ export const asyncRoutes: RouteConfig[] = [
   {
     path: '/management',
     component: Layout,
+    meta: {
+      roles: 'admin'
+    },
     children: [
       {
         path: 'users',
