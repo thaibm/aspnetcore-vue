@@ -83,14 +83,13 @@ class User extends VuexModule implements IUserState {
     if (!data) {
       throw Error('Verification failed, please Login again.');
     }
-    const { name, emailAddress } = data.result.user;
-    const roles = ['admin'];
+    const { name, emailAddress, roleNames } = data.result.user;
     const avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif';
     // roles must be a non-empty array
-    if (!roles || roles.length <= 0) {
+    if (!roleNames || roleNames.length <= 0) {
       throw Error('GetUserInfo: roles must be a non-null array!');
     }
-    this.SET_ROLES(roles);
+    this.SET_ROLES(roleNames.map((r: string) => r.toLowerCase()));
     this.SET_NAME(name);
     this.SET_AVATAR(avatar);
     // this.SET_INTRODUCTION(introduction)
