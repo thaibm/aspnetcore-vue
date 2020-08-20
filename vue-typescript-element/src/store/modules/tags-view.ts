@@ -3,7 +3,8 @@ import { Route } from 'vue-router';
 import store from '@/store';
 
 export interface ITagView extends Partial<Route> {
-  title?: string
+  title?: string,
+  name?: string
 }
 
 export interface ITagsViewState {

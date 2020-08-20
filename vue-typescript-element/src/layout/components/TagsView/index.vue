@@ -143,7 +143,7 @@ export default class extends Vue {
   private addTags() {
     const { name } = this.$route;
     if (name) {
-      TagsViewModule.addView(this.$route);
+      TagsViewModule.addView(this.$route as ITagView);
     }
     return false;
   }
@@ -156,7 +156,7 @@ export default class extends Vue {
           (this.$refs.scrollPane as ScrollPane).moveToTarget(tag as any);
           // When query is different then update
           if ((tag.to as ITagView).fullPath !== this.$route.fullPath) {
-            TagsViewModule.updateVisitedView(this.$route);
+            TagsViewModule.updateVisitedView(this.$route as ITagView);
           }
           break;
         }
