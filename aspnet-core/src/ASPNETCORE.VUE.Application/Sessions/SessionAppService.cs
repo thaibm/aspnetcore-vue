@@ -27,7 +27,16 @@ namespace ASPNETCORE.VUE.Sessions
 
             if (AbpSession.UserId.HasValue)
             {
-                output.User = ObjectMapper.Map<UserLoginInfoDto>(await GetCurrentUserAsync());
+                var user = await GetCurrentUserAsync();
+                output.User = new UserLoginInfoDto()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    UserName = user.UserName,
+                    RoleNames = user.RoleNames,
+                    EmailAddress = user.EmailAddress,
+                };
             }
 
             return output;
