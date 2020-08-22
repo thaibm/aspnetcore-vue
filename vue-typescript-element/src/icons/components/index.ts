@@ -49,3 +49,4 @@ import './tree';
 import './user';
 import './wechat';
 import './zip';
+import './google-logo';
