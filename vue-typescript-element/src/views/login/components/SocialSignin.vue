@@ -1,23 +1,11 @@
 <template>
   <div class="social-signup-container">
-    <div
-      class="sign-btn"
-      @click="wechatHandleClick('wechat')"
+    <button
+      ref="signinBtn"
+      class="g-signin-button"
     >
-      <span class="wx-svg-container"><svg-icon
-        name="wechat"
-        class="icon"
-      /></span> 微信
-    </div>
-    <div
-      class="sign-btn"
-      @click="tencentHandleClick('tencent')"
-    >
-      <span class="qq-svg-container"><svg-icon
-        name="qq"
-        class="icon"
-      /></span> QQ
-    </div>
+      Sign in with Google
+    </button>
   </div>
 </template>
 
@@ -29,22 +17,33 @@ import { Component, Vue } from 'vue-property-decorator';
   name: 'SocialSignin'
 })
 export default class extends Vue {
-  private wechatHandleClick(thirdpart: any) {
-    alert('ok');
-    // this.$store.commit('SET_AUTH_TYPE', thirdpart)
-    // const appid = 'xxxxx'
-    // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')
-    // const url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_login#wechat_redirect'
-    // openWindow(url, thirdpart, 540, 540)
-  }
+  clientId = '69541603314-st5uan1l3o0ff47ougr7jd3dt3s0vh9b.apps.googleusercontent.com';
 
-  private tencentHandleClick(thirdpart: any) {
-    alert('ok');
-    // this.$store.commit('SET_AUTH_TYPE', thirdpart)
-    // const client_id = 'xxxxx'
-    // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')
-    // const url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirect_uri
-    // openWindow(url, thirdpart, 540, 540)
+  mounted() {
+    if (!window.gapi) {
+      throw new Error(
+        '"https://apis.google.com/js/api:client.js" needs to be included as a <script>.'
+      );
+    }
+
+    if (!this.clientId) {
+      throw new Error('Client Id must be specified.');
+    }
+    window.gapi.load('auth2', () => {
+      const auth2 = window.gapi.auth2.init({ client_id: this.clientId });
+      auth2.attachClickHandler(
+        this.$refs.signinBtn,
+        {},
+        (googleUser: any) => {
+          console.log('extends -> mounted -> googleUser', googleUser);
+          debugger;
+          this.$emit('success', googleUser);
+        },
+        (error: any) => {
+          this.$emit('error', error);
+        }
+      );
+    });
   }
 }
 </script>
@@ -82,7 +81,7 @@ export default class extends Vue {
   }
 
   .qq-svg-container {
-    background-color: #6BA2D6;
+    background-color: #6ba2d6;
     margin-left: 50px;
   }
 }

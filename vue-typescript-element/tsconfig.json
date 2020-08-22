@@ -14,7 +14,9 @@
     "types": [
       "node",
       "jest",
-      "webpack-env"
+      "webpack-env",
+      "gapi", 
+      "gapi.auth2"
     ],
     "paths": {
       "@/*": [

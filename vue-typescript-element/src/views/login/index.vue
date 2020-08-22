@@ -70,37 +70,8 @@
       >
         {{ $t('login.logIn') }}
       </el-button>
-
-      <div style="position:relative">
-        <div class="tips">
-          <span>{{ $t('login.username') }} : admin </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
-        </div>
-        <div class="tips">
-          <span>{{ $t('login.username') }} : editor </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
-        </div>
-
-        <el-button
-          class="thirdparty-button"
-          type="primary"
-          @click="showDialog=true"
-        >
-          {{ $t('login.thirdparty') }}
-        </el-button>
-      </div>
+      <social-sign @success="success" />
     </el-form>
-
-    <el-dialog
-      :title="$t('login.thirdparty')"
-      :visible.sync="showDialog"
-    >
-      {{ $t('login.thirdpartyTips') }}
-      <br>
-      <br>
-      <br>
-      <social-sign />
-    </el-dialog>
   </div>
 </template>
 
@@ -213,6 +184,10 @@ export default class extends Vue {
       return acc;
     }, {} as Dictionary<string>);
   }
+
+  success(user: any) {
+    console.log('extends -> success -> user', user);
+  }
 }
 </script>
 
@@ -220,8 +195,12 @@ export default class extends Vue {
 // References: https://www.zhangxinxu.com/wordpress/2018/01/css-caret-color-first-line/
 @supports (-webkit-mask: none) and (not (cater-color: $loginCursorColor)) {
   .login-container .el-input {
-    input { color: $loginCursorColor; }
-    input::first-line { color: $lightGray; }
+    input {
+      color: $loginCursorColor;
+    }
+    input::first-line {
+      color: $lightGray;
+    }
   }
 }
 
