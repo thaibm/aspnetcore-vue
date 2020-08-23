@@ -7,6 +7,7 @@
       class="login-form"
       autocomplete="on"
       label-position="left"
+      @submit.prevent="handleLogin"
     >
       <div class="title-container">
         <h3 class="title">
@@ -70,37 +71,10 @@
       >
         {{ $t('login.logIn') }}
       </el-button>
-
-      <div style="position:relative">
-        <div class="tips">
-          <span>{{ $t('login.username') }} : admin </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
-        </div>
-        <div class="tips">
-          <span>{{ $t('login.username') }} : editor </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
-        </div>
-
-        <el-button
-          class="thirdparty-button"
-          type="primary"
-          @click="showDialog=true"
-        >
-          {{ $t('login.thirdparty') }}
-        </el-button>
-      </div>
     </el-form>
-
-    <el-dialog
-      :title="$t('login.thirdparty')"
-      :visible.sync="showDialog"
-    >
-      {{ $t('login.thirdpartyTips') }}
-      <br>
-      <br>
-      <br>
-      <social-sign />
-    </el-dialog>
+    <div class="social-signin">
+      <GoogleSignin />
+    </div>
   </div>
 </template>
 
@@ -112,13 +86,13 @@ import { Form as ElForm, Input } from 'element-ui';
 import { UserModule } from '@/store/modules/user';
 import { isValidUsername } from '@/utils/validate';
 import LangSelect from '@/components/LangSelect/index.vue';
-import SocialSign from './components/SocialSignin.vue';
+import GoogleSignin from './components/GoogleSignin.vue';
 
 @Component({
   name: 'Login',
   components: {
     LangSelect,
-    SocialSign
+    GoogleSignin
   }
 })
 export default class extends Vue {
@@ -220,8 +194,12 @@ export default class extends Vue {
 // References: https://www.zhangxinxu.com/wordpress/2018/01/css-caret-color-first-line/
 @supports (-webkit-mask: none) and (not (cater-color: $loginCursorColor)) {
   .login-container .el-input {
-    input { color: $loginCursorColor; }
-    input::first-line { color: $lightGray; }
+    input {
+      color: $loginCursorColor;
+    }
+    input::first-line {
+      color: $lightGray;
+    }
   }
 }
 
@@ -264,12 +242,17 @@ export default class extends Vue {
   overflow: hidden;
   background-color: $loginBg;
 
+  .login-form,
+  .social-signin {
+    width: 520px;
+    margin: 0 auto;
+    padding: 0 35px 0;
+  }
+
   .login-form {
     position: relative;
-    width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
+    margin-top: 160px;
     overflow: hidden;
   }
 
