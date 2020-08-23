@@ -133,7 +133,8 @@ class User extends VuexModule implements IUserState {
   public async googleSignin(payload: IGoogleSigninPayload) {
     try {
       const { data } = await googleSignin(payload);
-      // TODO update token
+      setToken(data.result.accessToken);
+      this.SET_TOKEN(data.result.accessToken);
     } catch (error) {
       console.error(error);
     }
