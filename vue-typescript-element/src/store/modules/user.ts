@@ -137,7 +137,7 @@ class User extends VuexModule implements IUserState {
       setToken(data.result.accessToken);
       this.SET_TOKEN(data.result.accessToken);
     } catch (error) {
-      console.error(error);
+      throw Error(error);
     }
   }
 }
