@@ -133,6 +133,7 @@ class User extends VuexModule implements IUserState {
   public async socialSignin(payload: ISocialSigninPayload) {
     try {
       const { data } = await socialSignin(payload);
+
       setToken(data.result.accessToken);
       this.SET_TOKEN(data.result.accessToken);
     } catch (error) {
