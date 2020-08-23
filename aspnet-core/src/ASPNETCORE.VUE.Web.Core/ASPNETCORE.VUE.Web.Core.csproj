@@ -28,4 +28,7 @@
     <PackageReference Include="Abp.ZeroCore" Version="5.10.1" />
     <PackageReference Include="Abp.AspNetCore.SignalR" Version="5.10.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authentication\Google\" />
+  </ItemGroup>
 </Project>

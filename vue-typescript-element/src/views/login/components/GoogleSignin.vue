@@ -46,10 +46,10 @@ export default class extends Vue {
 
   onSuccess(googleUser: any) {
     const authResponse: IGoogleAuthResponse = googleUser.getAuthResponse();
-    UserModule.googleSignin({
+    UserModule.socialSignin({
       authProvider: 'GOOGLE',
       providerKey: googleUser.getId(),
-      providerAccessCode: googleUser.wc.access_token
+      providerAccessCode: googleUser.wc.id_token
     });
   }
 }
