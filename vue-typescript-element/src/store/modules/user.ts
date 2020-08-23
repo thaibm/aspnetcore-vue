@@ -1,4 +1,4 @@
-import { IGoogleSigninPayload } from './../../types/social-signin/google';
+import { ISocialSigninPayload } from '@/types/social-signin/google';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import { login, getUserInfo } from '@/api/users';
 import { getToken, setToken, removeToken } from '@/utils/cookies';
@@ -6,7 +6,7 @@ import router, { resetRouter } from '@/router';
 import { PermissionModule } from './permission';
 import { TagsViewModule } from './tags-view';
 import store from '@/store';
-import { googleSignin } from '@/api/social-signin/google';
+import { socialSignin } from '@/api/social-signin/google';
 
 export interface IUserState {
   token: string
@@ -130,13 +130,14 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async googleSignin(payload: IGoogleSigninPayload) {
+  public async socialSignin(payload: ISocialSigninPayload) {
     try {
-      const { data } = await googleSignin(payload);
+      const { data } = await socialSignin(payload);
+
       setToken(data.result.accessToken);
       this.SET_TOKEN(data.result.accessToken);
     } catch (error) {
-      console.error(error);
+      throw Error(error);
     }
   }
 }

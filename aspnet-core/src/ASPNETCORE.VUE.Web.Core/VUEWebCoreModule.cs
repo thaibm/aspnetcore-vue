@@ -13,6 +13,9 @@ using ASPNETCORE.VUE.Authentication.JwtBearer;
 using ASPNETCORE.VUE.Configuration;
 using ASPNETCORE.VUE.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using ASPNETCORE.VUE.Authentication.External;
+using ASPNETCORE.VUE.Authentication.Social;
+using System.Collections.Generic;
 
 namespace ASPNETCORE.VUE
 {
@@ -20,7 +23,7 @@ namespace ASPNETCORE.VUE
          typeof(VUEApplicationModule),
          typeof(VUEEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
-        ,typeof(AbpAspNetCoreSignalRModule)
+        , typeof(AbpAspNetCoreSignalRModule)
      )]
     public class VUEWebCoreModule : AbpModule
     {
@@ -71,6 +74,31 @@ namespace ASPNETCORE.VUE
         {
             IocManager.Resolve<ApplicationPartManager>()
                 .AddApplicationPartsIfNotAddedBefore(typeof(VUEWebCoreModule).Assembly);
+            
+            var providers = new List<ExternalLoginProviderInfo>();
+
+            if (_appConfiguration.GetValue<bool>("Authentication:Facebook:IsEnabled"))
+            {
+                providers.Add(new ExternalLoginProviderInfo(
+                    FacebookAuthProvider.Name,
+                    _appConfiguration["Authentication:Facebook:AppId"],
+                    _appConfiguration["Authentication:Facebook:AppSecret"],
+                    typeof(FacebookAuthProvider)
+                ));
+            }
+
+            if (_appConfiguration.GetValue<bool>("Authentication:Google:IsEnabled"))
+            {
+                providers.Add(new ExternalLoginProviderInfo(
+                    GoogleAuthProvider.Name,
+                    _appConfiguration["Authentication:Google:ClientId"],
+                    _appConfiguration["Authentication:Google:ClientSecret"],
+                    typeof(GoogleAuthProvider)
+                ));
+            }
+
+            var externalAuthConfiguration = IocManager.Resolve<IExternalAuthConfiguration>();
+            externalAuthConfiguration.Providers.AddRange(providers);
         }
     }
 }

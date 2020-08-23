@@ -135,33 +135,41 @@ namespace ASPNETCORE.VUE.Controllers
 
         private async Task<User> RegisterExternalUserAsync(ExternalAuthUserInfo externalUser)
         {
-            var user = await _userRegistrationManager.RegisterAsync(
-                externalUser.Name,
-                externalUser.Surname,
-                externalUser.EmailAddress,
-                externalUser.EmailAddress,
-                Authorization.Users.User.CreateRandomPassword(),
-                true
-            );
-
-            user.Logins = new List<UserLogin>
+            try
             {
-                new UserLogin
+                var user = await _userRegistrationManager.RegisterAsync(
+                    externalUser.Name,
+                    externalUser.Surname,
+                    externalUser.EmailAddress,
+                    externalUser.EmailAddress,
+                    Authorization.Users.User.CreateRandomPassword(),
+                    true,
+                    false
+                );
+
+                    user.Logins = new List<UserLogin>
                 {
-                    LoginProvider = externalUser.Provider,
-                    ProviderKey = externalUser.ProviderKey,
-                    TenantId = user.TenantId
-                }
-            };
+                    new UserLogin
+                    {
+                        LoginProvider = externalUser.Provider,
+                        ProviderKey = externalUser.ProviderKey,
+                        TenantId = user.TenantId
+                    }
+                };
 
-            await CurrentUnitOfWork.SaveChangesAsync();
+                    await CurrentUnitOfWork.SaveChangesAsync();
 
-            return user;
+                    return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private async Task<ExternalAuthUserInfo> GetExternalUserInfo(ExternalAuthenticateModel model)
         {
-            var userInfo = await _externalAuthManager.GetUserInfo(model.AuthProvider, model.ProviderAccessCode);
+            var userInfo = await _externalAuthManager.GetUserInfo(model.AuthProvider.ToUpper(), model.ProviderAccessCode);
             if (userInfo.ProviderKey != model.ProviderKey)
             {
                 throw new UserFriendlyException(L("CouldNotValidateExternalUser"));

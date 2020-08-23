@@ -73,7 +73,7 @@
       </el-button>
     </el-form>
     <div class="social-signin">
-      <GoogleSignin />
+      <GoogleSignin @onSuccess="socialSigninSuccess" />
     </div>
   </div>
 </template>
@@ -186,6 +186,13 @@ export default class extends Vue {
       }
       return acc;
     }, {} as Dictionary<string>);
+  }
+
+  private socialSigninSuccess(success: boolean) {
+    this.$router.push({
+      path: this.redirect || '/',
+      query: this.otherQuery
+    });
   }
 }
 </script>

@@ -14,7 +14,7 @@ export interface IGoogleAuthResponse {
     token_type: string;
 }
 
-export interface IGoogleSigninPayload {
+export interface ISocialSigninPayload {
     authProvider: string;
     providerKey: string;
     providerAccessCode: string;

@@ -13,6 +13,7 @@
 import { Component, Vue, Ref } from 'vue-property-decorator';
 import { IWindow, IGoogleAuthResponse } from '@/types/social-signin/google';
 import { UserModule } from '@/store/modules/user';
+import { Message } from 'element-ui';
 
 @Component({
   name: 'GoogleSignin'
@@ -44,13 +45,18 @@ export default class extends Vue {
     });
   }
 
-  onSuccess(googleUser: any) {
+  async onSuccess(googleUser: any) {
     const authResponse: IGoogleAuthResponse = googleUser.getAuthResponse();
-    UserModule.googleSignin({
-      authProvider: 'GOOGLE',
-      providerKey: googleUser.getId(),
-      providerAccessCode: googleUser.wc.access_token
-    });
+    try {
+      await UserModule.socialSignin({
+        authProvider: 'GOOGLE',
+        providerKey: googleUser.getId(),
+        providerAccessCode: googleUser.wc.id_token
+      });
+      this.$emit('onSuccess');
+    } catch (error) {
+      Message.error(error);
+    }
   }
 }
 </script>

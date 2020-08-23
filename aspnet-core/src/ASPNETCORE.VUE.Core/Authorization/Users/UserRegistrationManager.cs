@@ -37,15 +37,18 @@ namespace ASPNETCORE.VUE.Authorization.Users
             AbpSession = NullAbpSession.Instance;
         }
 
-        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed)
+        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, bool isHostUsers = true)
         {
-            CheckForTenant();
+            if (isHostUsers)
+            {
+                CheckForTenant();
+            }            
 
             var tenant = await GetActiveTenantAsync();
 
             var user = new User
             {
-                TenantId = tenant.Id,
+                TenantId = tenant?.Id,
                 Name = name,
                 Surname = surname,
                 EmailAddress = emailAddress,
@@ -59,10 +62,10 @@ namespace ASPNETCORE.VUE.Authorization.Users
            
             foreach (var defaultRole in await _roleManager.Roles.Where(r => r.IsDefault).ToListAsync())
             {
-                user.Roles.Add(new UserRole(tenant.Id, user.Id, defaultRole.Id));
+                user.Roles.Add(new UserRole(tenant?.Id, user.Id, defaultRole.Id));
             }
 
-            await _userManager.InitializeOptionsAsync(tenant.Id);
+            await _userManager.InitializeOptionsAsync(tenant?.Id);
 
             CheckErrors(await _userManager.CreateAsync(user, plainPassword));
             await CurrentUnitOfWork.SaveChangesAsync();

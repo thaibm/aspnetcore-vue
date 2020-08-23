@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using ASPNETCORE.VUE.Configuration;
+using ASPNETCORE.VUE.Authentication.External;
 
 namespace ASPNETCORE.VUE.Web.Host.Startup
 {
