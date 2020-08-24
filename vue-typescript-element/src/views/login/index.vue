@@ -74,6 +74,7 @@
     </el-form>
     <div class="social-signin">
       <GoogleSignin @onSuccess="socialSigninSuccess" />
+      <FacebookSignin />
     </div>
   </div>
 </template>
@@ -87,12 +88,14 @@ import { UserModule } from '@/store/modules/user';
 import { isValidUsername } from '@/utils/validate';
 import LangSelect from '@/components/LangSelect/index.vue';
 import GoogleSignin from './components/GoogleSignin.vue';
+import FacebookSignin from './components/FacebookSignin.vue';
 
 @Component({
   name: 'Login',
   components: {
     LangSelect,
-    GoogleSignin
+    GoogleSignin,
+    FacebookSignin
   }
 })
 export default class extends Vue {
@@ -261,6 +264,10 @@ export default class extends Vue {
     max-width: 100%;
     margin-top: 160px;
     overflow: hidden;
+  }
+
+  .social-signin {
+    display: flex;
   }
 
   .tips {
