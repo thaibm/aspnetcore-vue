@@ -51,7 +51,7 @@ export default class extends Vue {
       await UserModule.socialSignin({
         authProvider: 'GOOGLE',
         providerKey: googleUser.getId(),
-        providerAccessCode: googleUser.wc.id_token
+        providerAccessCode: authResponse.id_token
       });
       this.$emit('onSuccess');
     } catch (error) {
